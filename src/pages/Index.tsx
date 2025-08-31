@@ -1,39 +1,104 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { CheckCircle, Mail, MapPin, Phone, Shield, Zap, Users, Code, Server, Smartphone } from "lucide-react";
+import {
+  CheckCircle,
+  Mail,
+  MapPin,
+  Phone,
+  Shield,
+  Zap,
+  Users,
+  Code,
+  Server,
+  Smartphone,
+} from "lucide-react";
+import { motion } from "framer-motion";
+import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
 
 const Index = () => {
+  useSmoothScroll();
+  
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.6,
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+      },
+    },
+  };
+
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+      },
+    },
+  };
+
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
   const services = [
     {
       icon: <Code className="w-8 h-8" />,
       title: "Network Assessment",
-      description: "Comprehensive evaluation of your IT infrastructure to identify optimization opportunities."
+      description:
+        "Comprehensive evaluation of your IT infrastructure to identify optimization opportunities.",
     },
     {
       icon: <Server className="w-8 h-8" />,
       title: "IT System Implementation",
-      description: "End-to-end implementation of robust IT solutions tailored to your business needs."
+      description:
+        "End-to-end implementation of robust IT solutions tailored to your business needs.",
     },
     {
       icon: <Shield className="w-8 h-8" />,
       title: "Security Solutions",
-      description: "Advanced cybersecurity measures to protect your valuable data and systems."
+      description:
+        "Advanced cybersecurity measures to protect your valuable data and systems.",
     },
     {
       icon: <Zap className="w-8 h-8" />,
       title: "Performance Optimization",
-      description: "Enhance system performance and reliability for maximum productivity."
+      description:
+        "Enhance system performance and reliability for maximum productivity.",
     },
     {
       icon: <Users className="w-8 h-8" />,
       title: "IT Consulting",
-      description: "Strategic guidance to align your technology with business objectives."
+      description:
+        "Strategic guidance to align your technology with business objectives.",
     },
     {
       icon: <Smartphone className="w-8 h-8" />,
       title: "Mobile Solutions",
-      description: "Modern mobile applications and responsive web solutions."
-    }
+      description: "Modern mobile applications and responsive web solutions.",
+    },
   ];
 
   const features = [
@@ -42,79 +107,182 @@ const Index = () => {
     "Cost-effective solutions",
     "High-tech service delivery",
     "Comprehensive IT outsourcing",
-    "24/7 technical support"
+    "24/7 technical support",
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-secondary">
+    <motion.div
+      className="min-h-screen bg-gradient-to-br from-background via-background to-secondary"
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
+    >
       {/* Navigation */}
-      <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
+      <motion.nav
+        className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border"
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+      >
         <div className="max-w-6xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
+            <motion.div
+              className="flex items-center space-x-3"
+              variants={itemVariants}
+            >
+              <motion.div
+                className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center"
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                transition={{ duration: 0.2 }}
+              >
                 <Code className="w-6 h-6 text-white" />
-              </div>
+              </motion.div>
               <div>
-                <h1 className="text-xl font-bold text-foreground">The Contractor</h1>
+                <h1 className="text-xl font-bold text-foreground">
+                  The Contractor
+                </h1>
                 <p className="text-sm text-muted-foreground">IT Solutions</p>
               </div>
-            </div>
+            </motion.div>
             <div className="hidden md:flex items-center space-x-8">
-              <a href="#about" className="text-foreground hover:text-primary transition-colors">About</a>
-              <a href="#services" className="text-foreground hover:text-primary transition-colors">Services</a>
-              <a href="#why-us" className="text-foreground hover:text-primary transition-colors">Why Us</a>
-              <a href="#contact" className="text-foreground hover:text-primary transition-colors">Contact</a>
+              <a
+                href="#about"
+                className="text-foreground hover:text-primary transition-colors"
+              >
+                About
+              </a>
+              <a
+                href="#services"
+                className="text-foreground hover:text-primary transition-colors"
+              >
+                Services
+              </a>
+              <a
+                href="#clients"
+                className="text-foreground hover:text-primary transition-colors"
+              >
+                Clients
+              </a>
+              <a
+                href="#why-us"
+                className="text-foreground hover:text-primary transition-colors"
+              >
+                Why Us
+              </a>
+              <a
+                href="#contact"
+                className="text-foreground hover:text-primary transition-colors"
+              >
+                Contact
+              </a>
             </div>
-            <Button className="bg-gradient-to-r from-primary to-accent hover:opacity-90 text-white shadow-lg">
-              Get Started
-            </Button>
+            <motion.div
+              variants={itemVariants}
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.2 }}
+            >
+              <Button className="bg-gradient-to-r from-primary to-accent hover:opacity-90 text-white shadow-lg">
+                Get Started
+              </Button>
+            </motion.div>
           </div>
         </div>
-      </nav>
+      </motion.nav>
 
       {/* Hero Section */}
-      <section className="relative py-24 px-6 overflow-hidden">
+      <motion.section
+        className="relative py-24 px-6 overflow-hidden"
+        variants={fadeInUp}
+      >
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5"></div>
         <div className="max-w-6xl mx-auto text-center relative">
-          <div className="inline-flex items-center px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-8">
+          <motion.div
+            className="inline-flex items-center px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-8"
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
             <Zap className="w-4 h-4 mr-2" />
             Enterprise IT Solutions Since 2005
-          </div>
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-            <span className="text-foreground">Modern IT</span>
-            <br />
-            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              Solutions
-            </span>
-          </h1>
-          <p className="text-xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
-            Transform your business with our comprehensive IT outsourcing services. 
-            We provide cutting-edge technology solutions for small, mid, and large enterprises 
-            with 19+ years of proven experience.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:opacity-90 text-white shadow-xl px-8 py-6 text-lg">
-              Start Your Assessment
-            </Button>
-            <Button size="lg" variant="outline" className="px-8 py-6 text-lg border-2 hover:bg-primary hover:text-white">
-              View Our Work
-            </Button>
-          </div>
+          </motion.div>
+                      <motion.h1
+              className="text-5xl md:text-7xl font-bold mb-6 leading-tight"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              <span className="text-foreground">Modern IT</span>
+              <br />
+              <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                Solutions
+              </span>
+            </motion.h1>
+            <motion.p
+              className="text-xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+            >
+              Transform your business with our comprehensive IT outsourcing
+              services. We provide cutting-edge technology solutions for small,
+              mid, and large enterprises with 19+ years of proven experience.
+            </motion.p>
+                      <motion.div
+              className="flex flex-col sm:flex-row items-center justify-center gap-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+            >
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Button
+                  size="lg"
+                  className="bg-gradient-to-r from-primary to-accent hover:opacity-90 text-white shadow-xl px-8 py-6 text-lg"
+                >
+                  Start Your Assessment
+                </Button>
+              </motion.div>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="px-8 py-6 text-lg border-2 hover:bg-primary hover:text-white"
+                >
+                  <a href="#clients">Show Our Clients</a>
+                </Button>
+              </motion.div>
+            </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* About Section */}
-      <section id="about" className="py-24 px-6">
+      <motion.section
+        id="about"
+        className="py-24 px-6"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={staggerContainer}
+      >
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <h2 className="text-4xl font-bold mb-6 text-foreground">About The Contractor IT</h2>
+              <h2 className="text-4xl font-bold mb-6 text-foreground">
+                About The Contractor IT
+              </h2>
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                IT Outsource started to be the solution for all firms targeting high-tech service 
-                and technology with a fixed reasonable low cost. The Contractor IT brings 19 years 
-                of experience in IT outsource and Information Technology field, providing IT services 
-                for multi-company levels.
+                IT Outsource started to be the solution for all firms targeting
+                high-tech service and technology with a fixed reasonable low
+                cost. The Contractor IT brings 19 years of experience in IT
+                outsource and Information Technology field, providing IT
+                services for multi-company levels.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
                 {features.map((feature, index) => (
@@ -135,10 +303,13 @@ const Index = () => {
                   <div className="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center mx-auto mb-6">
                     <Shield className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold mb-4 text-foreground">Have you ever had an IT Assessment?</h3>
+                  <h3 className="text-2xl font-bold mb-4 text-foreground">
+                    Have you ever had an IT Assessment?
+                  </h3>
                   <p className="text-muted-foreground mb-6">
-                    Get a comprehensive evaluation of your IT environment to identify 
-                    optimization opportunities and security vulnerabilities.
+                    Get a comprehensive evaluation of your IT environment to
+                    identify optimization opportunities and security
+                    vulnerabilities.
                   </p>
                   <Button variant="outline" className="w-full">
                     Schedule Assessment
@@ -148,46 +319,364 @@ const Index = () => {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Services Section */}
-      <section id="services" className="py-24 px-6 bg-secondary/30">
+      <motion.section
+        id="services"
+        className="py-24 px-6 bg-secondary/30"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={staggerContainer}
+      >
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            className="text-center mb-16"
+            variants={itemVariants}
+          >
+            <h2 className="text-4xl font-bold mb-6 text-foreground">
+              Our Services
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Comprehensive IT solutions designed to accelerate your business
+              growth and optimize your technology infrastructure.
+            </p>
+          </motion.div>
+          <motion.div
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+            variants={staggerContainer}
+          >
+            {services.map((service, index) => (
+              <motion.div
+                key={index}
+                variants={itemVariants}
+                whileHover={{ y: -5 }}
+                transition={{ duration: 0.3 }}
+              >
+                <Card
+                  className="p-8 bg-card/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                >
+                <div className="text-primary mb-4">{service.icon}</div>
+                <h3 className="text-xl font-semibold mb-3 text-foreground">
+                  {service.title}
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  {service.description}
+                </p>
+              </Card>
+                </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </motion.section>
+
+      {/* Clients Section */}
+      <motion.section
+        id="clients"
+        className="py-24 px-6 bg-gradient-to-br from-primary/5 to-accent/5"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={staggerContainer}
+      >
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-6 text-foreground">Our Services</h2>
+            <h2 className="text-4xl font-bold mb-6 text-foreground">
+              Our Trusted Clients
+            </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Comprehensive IT solutions designed to accelerate your business growth 
-              and optimize your technology infrastructure.
+              We've designed, planned, and implemented total IT solutions for
+              Jordanian and international key customers. The Contractor IT
+              represents and performs day-to-day IT operations for these
+              organizations.
             </p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <Card key={index} className="p-8 bg-card/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                <div className="text-primary mb-4">{service.icon}</div>
-                <h3 className="text-xl font-semibold mb-3 text-foreground">{service.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{service.description}</p>
-              </Card>
-            ))}
+
+          {/* Featured Clients */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+            <Card className="p-6 bg-card/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-xl transition-all duration-300">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <Users className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-lg font-semibold mb-2 text-foreground">
+                  Al Nabulsi
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  Multi-branch retail operations
+                </p>
+              </div>
+            </Card>
+
+            <Card className="p-6 bg-card/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-xl transition-all duration-300">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <Users className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-lg font-semibold mb-2 text-foreground">
+                  CMC Jordan
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  Construction & manufacturing
+                </p>
+              </div>
+            </Card>
+
+            <Card className="p-6 bg-card/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-xl transition-all duration-300">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <Users className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-lg font-semibold mb-2 text-foreground">
+                  AKTCO
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  2 branches in Jordan
+                </p>
+              </div>
+            </Card>
+
+            <Card className="p-6 bg-card/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-xl transition-all duration-300">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <Users className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-lg font-semibold mb-2 text-foreground">
+                  Kalboard
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  2 branches in Jordan
+                </p>
+              </div>
+            </Card>
+
+            <Card className="p-6 bg-card/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-xl transition-all duration-300">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <Users className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-lg font-semibold mb-2 text-foreground">
+                  Al Bina Hanna
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  3 branches in Jordan
+                </p>
+              </div>
+            </Card>
+
+            <Card className="p-6 bg-card/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-xl transition-all duration-300">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <Users className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-lg font-semibold mb-2 text-foreground">
+                  Ayoubi
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  6 branches in Jordan
+                </p>
+              </div>
+            </Card>
+          </div>
+
+          {/* Additional Clients Grid */}
+          <div className="bg-card/50 backdrop-blur-sm rounded-2xl p-8 border border-border">
+            <h3 className="text-2xl font-bold mb-6 text-center text-foreground">
+              Additional Organizations
+            </h3>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                <span className="text-foreground">Master.jo</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                <span className="text-foreground">JOE Japan</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                <span className="text-foreground">
+                  Musharbash Money Exchange
+                </span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                <span className="text-foreground">Envirolife</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                <span className="text-foreground">Imseeh Jewelers</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                <span className="text-foreground">Nabulsi Amad</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                <span className="text-foreground">Blush Perfumery</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                <span className="text-foreground">Travel Access</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                <span className="text-foreground">Competance</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                <span className="text-foreground">
+                  Executive Privatization Commission
+                </span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                <span className="text-foreground">AMIR Project (USAID)</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                <span className="text-foreground">
+                  BIAP (US Military Air Base)
+                </span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                <span className="text-foreground">
+                  Jordanian Civil Air Authority
+                </span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                <span className="text-foreground">Konica Copiers</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                <span className="text-foreground">ADPRO Advertising</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                <span className="text-foreground">ACCO RTC</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                <span className="text-foreground">Hankook Tires</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                <span className="text-foreground">HOBEKA Batteries</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                <span className="text-foreground">Al-Amal Center</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                <span className="text-foreground">JWAIKO</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                <span className="text-foreground">LEMA Water Project</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                <span className="text-foreground">JUHOD</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                <span className="text-foreground">Knight Travel</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                <span className="text-foreground">Nabil Food Products</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                <span className="text-foreground">ARTworks</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                <span className="text-foreground">GBS Global Business</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                <span className="text-foreground">LG Regional Office</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                <span className="text-foreground">FedEx Federal Express</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                <span className="text-foreground">
+                  International Water Company (SABEEL)
+                </span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                <span className="text-foreground">Hotline Internet Café</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                <span className="text-foreground">WTC World Trade Center</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                <span className="text-foreground">Amman Academy</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                <span className="text-foreground">
+                  Primary Health Care Initiatives
+                </span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                <span className="text-foreground">USAID PHCI CDC</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                <span className="text-foreground">Health Academy</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                <span className="text-foreground">
+                  National Population Commission
+                </span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                <span className="text-foreground">John Hopkins USAID</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                <span className="text-foreground">Ability Drilling</span>
+              </div>
+            </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Why Choose Us Section */}
       <section id="why-us" className="py-24 px-6">
         <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-6 text-foreground">Why Choose The Contractor IT?</h2>
+          <h2 className="text-4xl font-bold mb-6 text-foreground">
+            Why Choose The Contractor IT?
+          </h2>
           <p className="text-xl text-muted-foreground mb-16 max-w-3xl mx-auto">
-            We deliver exceptional value through proven expertise, innovative solutions, 
-            and unwavering commitment to your success.
+            We deliver exceptional value through proven expertise, innovative
+            solutions, and unwavering commitment to your success.
           </p>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
               <div className="w-20 h-20 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center mx-auto mb-6">
                 <Users className="w-10 h-10 text-white" />
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-foreground">Expert Team</h3>
+              <h3 className="text-2xl font-bold mb-4 text-foreground">
+                Expert Team
+              </h3>
               <p className="text-muted-foreground">
-                Our certified professionals bring decades of combined experience 
+                Our certified professionals bring decades of combined experience
                 to solve your most complex IT challenges.
               </p>
             </div>
@@ -195,20 +684,24 @@ const Index = () => {
               <div className="w-20 h-20 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center mx-auto mb-6">
                 <Zap className="w-10 h-10 text-white" />
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-foreground">Fast Implementation</h3>
+              <h3 className="text-2xl font-bold mb-4 text-foreground">
+                Fast Implementation
+              </h3>
               <p className="text-muted-foreground">
-                Rapid deployment and seamless integration to minimize 
-                downtime and maximize productivity.
+                Rapid deployment and seamless integration to minimize downtime
+                and maximize productivity.
               </p>
             </div>
             <div className="text-center">
               <div className="w-20 h-20 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center mx-auto mb-6">
                 <Shield className="w-10 h-10 text-white" />
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-foreground">Secure & Reliable</h3>
+              <h3 className="text-2xl font-bold mb-4 text-foreground">
+                Secure & Reliable
+              </h3>
               <p className="text-muted-foreground">
-                Enterprise-grade security and 99.9% uptime guarantee 
-                to keep your business running smoothly.
+                Enterprise-grade security and 99.9% uptime guarantee to keep
+                your business running smoothly.
               </p>
             </div>
           </div>
@@ -216,12 +709,17 @@ const Index = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-24 px-6 bg-gradient-to-br from-primary/5 to-accent/5">
+      <section
+        id="contact"
+        className="py-24 px-6 bg-gradient-to-br from-primary/5 to-accent/5"
+      >
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-6 text-foreground">Ready to Transform Your IT?</h2>
+          <h2 className="text-4xl font-bold mb-6 text-foreground">
+            Ready to Transform Your IT?
+          </h2>
           <p className="text-xl text-muted-foreground mb-12">
-            Let's discuss how we can help optimize your technology infrastructure 
-            and drive your business forward.
+            Let's discuss how we can help optimize your technology
+            infrastructure and drive your business forward.
           </p>
           <div className="grid md:grid-cols-3 gap-8 mb-12">
             <div className="flex flex-col items-center">
@@ -237,10 +735,15 @@ const Index = () => {
             <div className="flex flex-col items-center">
               <MapPin className="w-8 h-8 text-primary mb-3" />
               <h3 className="font-semibold text-foreground mb-2">Visit Us</h3>
-              <p className="text-muted-foreground">123 Business Ave, Suite 100</p>
+              <p className="text-muted-foreground">
+                123 Business Ave, Suite 100
+              </p>
             </div>
           </div>
-          <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:opacity-90 text-white shadow-xl px-12 py-6 text-lg">
+          <Button
+            size="lg"
+            className="bg-gradient-to-r from-primary to-accent hover:opacity-90 text-white shadow-xl px-12 py-6 text-lg"
+          >
             Get Your Free Consultation
           </Button>
         </div>
@@ -263,7 +766,7 @@ const Index = () => {
           </p>
         </div>
       </footer>
-    </div>
+    </motion.div>
   );
 };
 
