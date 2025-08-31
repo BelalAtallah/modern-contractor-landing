@@ -32,7 +32,7 @@ const App = () => {
           {isLoading ? (
             <LoadingSpinner key="loading" />
           ) : (
-            <BrowserRouter key="app">
+            <BrowserRouter basename="/modern-contractor-landing" key="app">
               <Routes>
                 <Route path="/" element={<Index />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
